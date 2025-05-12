@@ -122,12 +122,12 @@ const currentPath = Astro.url.pathname;
 
 <script>
   const darkToggle = document.getElementById('darkToggle');
-  const header = document.querySelector('header');
-  const headerInner = header.querySelector('div');
-  const openMenu = document.getElementById('openMenu');
-  const closeMenu = document.getElementById('closeMenu');
-  const menu = document.getElementById('menu');
-  const mobileMenuBackground = document.getElementById('mobileMenuBackground');
+  const header = document.querySelector('header') as HTMLElement;
+  const headerInner = header.querySelector('div') as HTMLElement;
+  const openMenu = document.getElementById('openMenu') as HTMLElement;
+  const closeMenu = document.getElementById('closeMenu') as HTMLElement;
+  const menu = document.getElementById('menu') as HTMLElement;
+  const mobileMenuBackground = document.getElementById('mobileMenuBackground') as HTMLElement;;
   let lastScroll = 0;
 
   // Mobile menu functionality
