@@ -1,0 +1,178 @@
+---
+import Footer from "../components/footer.astro";
+import Header from "../components/header.astro";
+import SquareLines from "../components/square-lines.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  publishDate?: Date;
+  author?: string;
+}
+
+const { 
+  title,
+  description = "Komal's blog about software testing, automation, and open source contributions",
+  image = "/assets/images/og-image.png",
+  type = "website",
+  publishDate,
+  author = "Komal Chowdhary"
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.site)} />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, Astro.site)} />
+
+    <!-- RSS Feed -->
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="Komal's Blog"
+      href="/feed.xml"
+    />
+
+    <!-- Structured Data -->
+    {type === 'article' && (
+      <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": title,
+        "description": description,
+        "image": new URL(image, Astro.site),
+        "datePublished": publishDate,
+        "author": {
+          "@type": "Person",
+          "name": author
+        },
+        "publisher": {
+          "@type": "Person",
+          "name": author
+        }
+      })} />
+    )}
+
+    {type === 'website' && (
+      <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": title,
+        "description": description,
+        "url": canonicalURL
+      })} />
+    )}
+
+    <!-- Used to add dark mode right away, adding here prevents any flicker -->
+    <script is:inline>
+      (function() {
+        if (typeof Storage !== 'undefined') {
+          const isDarkMode = localStorage.getItem('dark_mode') === 'true' || 
+            (!localStorage.getItem('dark_mode') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          if (isDarkMode) {
+            document.documentElement.classList.add('dark');
+          }
+        }
+      })();
+    </script>
+
+    <!-- Dark mode toggle functionality -->
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', function() {
+        const darkToggle = document.getElementById('darkToggle');
+        const html = document.documentElement;
+        const sun = document.getElementById('sun');
+        const moon = document.getElementById('moon');
+
+        function updateTheme(isDark) {
+          if (isDark) {
+            html.classList.add('dark');
+            sun.style.display = 'none';
+            moon.style.display = 'block';
+          } else {
+            html.classList.remove('dark');
+            sun.style.display = 'block';
+            moon.style.display = 'none';
+          }
+          localStorage.setItem('dark_mode', isDark);
+        }
+
+        // Initialize theme
+        updateTheme(html.classList.contains('dark'));
+
+        // Toggle theme on click
+        darkToggle.addEventListener('click', () => {
+          const isDark = !html.classList.contains('dark');
+          updateTheme(isDark);
+        });
+
+        // Handle system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+          if (localStorage.getItem('dark_mode') === null) {
+            updateTheme(e.matches);
+          }
+        });
+      });
+    </script>
+
+    <style>
+      .prose {
+        max-width: none;
+      }
+      .prose img {
+        border-radius: 20px;
+        margin: 0 auto;
+      }
+      .prose iframe {
+        margin: 0 auto;
+      }
+      .prose a {
+        text-decoration: none;
+      }
+      .prose a:hover {
+        text-decoration: underline;
+      }
+      .prose ul {
+        list-style-type: disc;
+        padding-left: 1.5em;
+      }
+      .prose p {
+        margin-bottom: 1.5em;
+      }
+    </style>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <Fragment set:html={import.meta.env.HEADER_INJECT} />
+  </head>
+  <body class="antialiased bg-white dark:bg-neutral-950">
+    <SquareLines />
+    <Header />
+    <slot />
+    <Footer />
+    <Fragment set:html={import.meta.env.FOOTER_INJECT} />
+  </body>
+</html>
