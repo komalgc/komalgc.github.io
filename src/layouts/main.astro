@@ -60,7 +60,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
     <!-- Structured Data -->
     {type === 'article' && (
-      <script type="application/ld+json" set:html={JSON.stringify({
+      <script type="application/ld+json" is:inline set:html={JSON.stringify({
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         "headline": title,
@@ -79,7 +79,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     )}
 
     {type === 'website' && (
-      <script type="application/ld+json" set:html={JSON.stringify({
+      <script type="application/ld+json" is:inline set:html={JSON.stringify({
         "@context": "https://schema.org",
         "@type": "WebSite",
         "name": title,

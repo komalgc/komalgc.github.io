@@ -1,0 +1,14 @@
+[
+  {
+    "name": "project 1",
+    "description": "project 1",
+    "image": "/assets/images/projects/pimify.png",
+    "url": "https://github.com/komalgc/project1/tree/main/e2e"
+  },
+  {
+    "name": "project 2",
+    "description": "Project 2",
+    "image": "/assets/images/projects/data-masking-demo.png",
+    "url": "https://github.com/komalgc/project2"
+  }
+]
