@@ -1,14 +1,14 @@
 [
   {
-    "name": "project 1",
-    "description": "project 1",
-    "image": "/assets/images/projects/pimify.png",
-    "url": "https://github.com/komalgc/project1/tree/main/e2e"
+    "name": "API Security Testing",
+    "description": "API Security is a comprehensive guide to securing APIs, covering topics such as authentication, authorization, encryption, and more.",
+    "image": "src/assets/images/projects/API-Security.png",
+    "url": "https://github.com/komalgc/API-sec/tree/main"
   },
   {
-    "name": "project 2",
-    "description": "Project 2",
-    "image": "/assets/images/projects/data-masking-demo.png",
-    "url": "https://github.com/komalgc/project2"
+    "name": "Test Data Generator using LLM",
+    "description": "Test Data Generator is a tool that helps developers generate realistic test data for their applications, making it easier to test and validate functionality.",
+    "image": "src/assets/images/projects/Test-Data-Generator.png",
+    "url": "https://github.com/komalgc/TestDataGenerator/tree/main"
   }
 ]
