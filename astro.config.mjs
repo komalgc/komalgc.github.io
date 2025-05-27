@@ -6,5 +6,6 @@ import tailwind from '@astrojs/tailwind';
 export default defineConfig({
     integrations: [tailwind()],
 	site: "https://komalgc.github.io",
-	trailingSlash: "never"
+	trailingSlash: "never",
+	output: 'static',
 });
