@@ -3,12 +3,19 @@
     "name": "API Security Testing",
     "description": "API Security is a comprehensive guide to securing APIs, covering topics such as authentication, authorization, encryption, and more.",
     "image": "/assets/images/projects/API-Security.png",
-    "url": "https://github.com/komalgc/API-sec/tree/main"
+    "url": "https://github.com/komalgc/API-SecurityTesting/tree/main"
   },
   {
     "name": "Test Data Generator using LLM",
     "description": "Test Data Generator is a tool that helps developers generate realistic test data for their applications, making it easier to test and validate functionality.",
     "image": "/assets/images/projects/Test-Data-Generator.png",
     "url": "https://github.com/komalgc/TestDataGenerator/tree/main"
+  },
+    {
+    "name": "API Performance Testing",
+    "description": "This performance testing approach leverages Locust,to simulate realistic user traffic on APIs. By using a custom load shape to understand how APIs perform under dynamic load conditions.",
+    "image": "/assets/images/projects/locust.jpg",
+    "url": "https://github.com/komalgc/API-Performance-Testing-Locust/tree/main"
   }
+
 ]
