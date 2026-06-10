@@ -1,5 +1,21 @@
 ---
-const { name, description, url, image } = Astro.props;
+interface Props {
+  name: string;
+  description: string;
+  url: string;
+  image: string;
+  category?: string;
+  tags?: string[];
+}
+
+const { 
+  name,
+  description,
+  url,
+  image,
+  category = "Project",
+  tags = [],
+} = Astro.props;
 ---
 
 <a
@@ -20,6 +36,17 @@ const { name, description, url, image } = Astro.props;
       <img src={image} class="w-full h-auto rounded-lg aspect-[16/9] object-cover" />
     </span>
     <span class="block w-full px-1 mt-5 mb-1 sm:mt-3">
+      <!-- NEW: test-case status line -->
+      <span
+        class="flex items-center gap-2 mb-3 font-mono text-[0.7rem] uppercase tracking-wider text-neutral-500 dark:text-neutral-400"
+      >
+        <span class="inline-flex items-center gap-1.5 text-[#2F7A5C] dark:text-[#5FB894]">
+          <span class="h-1.5 w-1.5 rounded-full bg-[#2F7A5C] dark:bg-[#5FB894]"></span>Pass
+        </span>
+        <span class="text-neutral-300 dark:text-neutral-600">/</span>
+        <span>{category}</span>
+      </span>
+
       <span
         class="flex items-center mb-0 text-base font-semibold tracking-tight text-neutral-900 dark:text-neutral-100"
       >
@@ -60,6 +87,19 @@ const { name, description, url, image } = Astro.props;
       <span class="text-sm text-neutral-600 dark:text-neutral-400 block"
         >{description}</span
       >
+
+      <!-- NEW: optional stack tags -->
+      {
+        tags.length > 0 && (
+          <span class="flex flex-wrap gap-1.5 mt-4">
+            {tags.map((tag) => (
+              <span class="rounded-md border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900 px-2 py-1 font-mono text-[0.7rem] text-neutral-700 dark:text-neutral-300">
+                {tag}
+              </span>
+            ))}
+          </span>
+        )
+      }
     </span>
   </span>
 </a>
