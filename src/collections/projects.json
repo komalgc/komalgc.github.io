@@ -1,27 +1,35 @@
 [
-  {
-    "name": "API Security Testing",
-    "description": "This project provides an automation-ready framework to identify and test for the OWASP API Security Top 10 vulnerabilities. Utilizing a curated Postman collection and environment, it simulates real-world attacks against the intentionally vulnerable OWASP crAPI application.",
-    "image": "/assets/images/projects/API-Security.png",
-    "url": "https://github.com/komalgc/API-SecurityTesting/tree/main"
+
+      {
+    "name": "Requirements Analyst AI Agent",
+    "description": "Built an AI-powered engineering skill designed to shift quality assurance and product discovery completely to the left.This custom agentic workflow transforms messy, unstructured stakeholder inputs into rigorous, testable, and gap-analyzed technical specifications before development or QA planning begins.",
+    "image": "/assets/images/projects/Req-Analysts.png",
+    "url": "https://github.com/komalgc/AiAgent-requirements-analyst/tree/main"
   },
-  {
+
+    {
     "name": "Test Data Generator using LLM",
     "description": "Test Data Generator is a tool that helps developers generate realistic test data for their applications, making it easier to test and validate functionality.",
     "image": "/assets/images/projects/Test-Data-Generator.png",
     "url": "https://github.com/komalgc/TestDataGenerator/tree/main"
   },
-    {
-    "name": "API Performance Testing",
-    "description": "This performance testing approach leverages Locust,to simulate realistic user traffic on APIs. By using a custom load shape to understand how APIs perform under dynamic load conditions.",
-    "image": "/assets/images/projects/locust.jpg",
-    "url": "https://github.com/komalgc/API-Performance-Testing-Locust/tree/main"
-  }, 
-
-     {
+       {
     "name": "Playwright Authetication Recipes",
     "description": "A comprehensive, production-ready reference architecture demonstrating scalable authentication strategies in Playwright using TypeScript.",
     "image": "/assets/images/projects/Authentication.jpg",
+    "url": "https://github.com/komalgc/Playwright-Authentication/tree/main"
+  }, 
+
+    {
+    "name": "API Security Testing",
+    "description": "This project provides an automation-ready framework to identify and test for the OWASP API Security Top 10 vulnerabilities. Utilizing a curated Postman collection and environment, it simulates real-world attacks against the intentionally vulnerable OWASP crAPI application.",
+    "image": "/assets/images/projects/API-Security.png",
+    "url": "https://github.com/komalgc/API-SecurityTesting/tree/main"
+  },
+      {
+    "name": "API Performance Testing",
+    "description": "This performance testing approach leverages Locust,to simulate realistic user traffic on APIs. By using a custom load shape to understand how APIs perform under dynamic load conditions.",
+    "image": "/assets/images/projects/locust.jpg",
     "url": "https://github.com/komalgc/API-Performance-Testing-Locust/tree/main"
   }
 

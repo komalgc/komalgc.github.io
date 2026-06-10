@@ -50,14 +50,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={new URL(image, Astro.site)} />
 
-    <!-- RSS Feed -->
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title="Komal's Blog"
-      href="/feed.xml"
-    />
-
     <!-- Structured Data -->
     {type === 'article' && (
       <script type="application/ld+json" is:inline set:html={JSON.stringify({
