@@ -15,11 +15,10 @@ import Layout from "../layouts/main.astro";
 	>
 		<div class="flex flex-col items-center md:flex-row">
 			<div class="relative w-full md:w-1/2">
-				<h1
-					class="mb-5 text-4xl font-bold leading-tight md:text-4xl lg:text-4xl dark:text-white"
-				>
-					Hi, I'm Komal.
-				</h1>
+	<h1 class="mb-5 text-5xl font-bold leading-tight md:text-5xl lg:text-6xl tracking-tight dark:text-white">
+  Hi, I'm
+  <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Komal.</span>
+</h1>
 				<p
 					class="mb-6 text-base text-neutral-600 dark:text-neutral-400"
 				>
@@ -31,22 +30,24 @@ import Layout from "../layouts/main.astro";
 				>
 					I can help you out with:
 				</p>
-				<ul
-					class="py-2 space-y-[3px] text-sm list-disc list-inside text-neutral-500 dark:text-neutral-400"
-				>
-				
-					<li>Design Context-Driven Test Strategies from Requirements </li>
-					<li>Build Scalable UI automation frameworks with Playwright</li>
-					<li>Integrate AI agents into QA workflows</li>
-					<li>Test API performance and Security</li>
-				    <li>Design Mobile automation framework with Appium</li>
-					<li>Implement shift-left and shift-right testing strategies</li>
-					<li>Wire automation into CI/CD with Quality gates and DORA metrics</li>
-					<li>Build a continous quality culture in Agile/DevOps teams</li>
-					<li>Test for compliance in regulated industries (GDPR, OWASP)</li>
-					<li>Mentor and lead QA engineers and SDETs</li>
-					<li>and more...</li>
-				</ul>
+				<div class="flex flex-wrap gap-2 py-2 fade-up" style="animation-delay: 0.15s">
+	{[
+		"Context-Driven Test Strategy",
+		"Scalable Automation Frameworks",
+		"AI Agents in QA Workflows",
+		"API Performance & Security",
+		"Compliance Testing",
+		"Shift-Left / Shift-Right Strategies",
+		"CI/CD Quality Gates",
+		"DORA metrics-driven improvement",
+		"Agile/DevOps Quality Culture",
+		"Mentoring QA & SDETs",
+	].map((skill) => (
+		<span class="px-3 py-1 text-xs font-medium rounded-full text-cyan-700 dark:text-cyan-300 bg-cyan-50 dark:bg-cyan-950/40 border border-cyan-200 dark:border-cyan-800/50 hover:scale-105 transition-transform duration-200">
+			{skill}
+		</span>
+	))}
+</div>
 				<Button
 					text="Follow me on LinkedIn"
 					link="https://www.linkedin.com/in/komalchowdhary/"
@@ -62,11 +63,10 @@ import Layout from "../layouts/main.astro";
 						<span
 							class="relative z-20 flex items-center justify-center w-full h-full text-2xl border-8 border-white rounded-full dark:border-neutral-950 bg-neutral-100 dark:bg-neutral-900"
 						>
-							<span
-								class="flex items-center justify-center w-full h-full bg-white border border-dashed rounded-full dark:bg-neutral-950 border-neutral-300 dark:border-neutral-700"
-								>👋</span
-							>
-						</span>
+	<span
+	class="wave flex items-center justify-center w-full h-full bg-white border border-dashed rounded-full dark:bg-neutral-950 border-neutral-300 dark:border-neutral-700"
+	>👋</span
+>
 					</div>
 					<div class="relative z-30 px-10">
 						<img
@@ -91,3 +91,17 @@ import Layout from "../layouts/main.astro";
 	<Separator text="Here's what I've written so far" />
 	<Writings />
 </Layout>
+<style>
+	@keyframes fade-up {
+		from { opacity: 0; transform: translateY(14px); }
+		to   { opacity: 1; transform: translateY(0); }
+	}
+	.fade-up { animation: fade-up 0.6s ease-out both; }
+
+	@keyframes wave {
+		0%, 100% { transform: rotate(0deg); }
+		25% { transform: rotate(20deg); }
+		75% { transform: rotate(-12deg); }
+	}
+	.wave { animation: wave 2s ease-in-out infinite; transform-origin: 70% 70%; }
+</style>
