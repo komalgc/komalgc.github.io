@@ -166,5 +166,158 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <slot />
     <Footer />
     <Fragment set:html={import.meta.env.FOOTER_INJECT} />
+    <!-- ============================================================ -->
+<!-- 🐛 BUG HUNT EASTER EGG (Astro version) — paste before </body> -->
+<!-- ============================================================ -->
+<style is:global>
+  /* The bug itself */
+  #qa-bug {
+    position: fixed;
+    z-index: 9999;
+    font-size: 22px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    line-height: 1;
+    opacity: 0.85;
+    transition: top 4s ease-in-out, left 4s ease-in-out, transform 0.3s ease;
+    animation: qa-bug-wiggle 2.5s ease-in-out infinite;
+    filter: drop-shadow(0 0 6px rgba(94, 234, 212, 0.25));
+  }
+  #qa-bug:hover,
+  #qa-bug:focus-visible {
+    transform: scale(1.4);
+    opacity: 1;
+    outline: none;
+  }
+  #qa-bug:focus-visible { filter: drop-shadow(0 0 8px rgba(94, 234, 212, 0.9)); }
+  #qa-bug.qa-squashed {
+    animation: qa-bug-squash 0.45s ease forwards;
+    pointer-events: none;
+  }
+  @keyframes qa-bug-wiggle {
+    0%, 100% { rotate: -8deg; }
+    50%      { rotate: 8deg; }
+  }
+  @keyframes qa-bug-squash {
+    40%  { transform: scale(1.6) rotate(20deg); }
+    100% { transform: scale(0) rotate(180deg); opacity: 0; }
+  }
+
+  /* The bug report toast */
+  #qa-bug-toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 10000;
+    max-width: 320px;
+    background: #16181d;
+    border: 1px solid rgba(94, 234, 212, 0.35);
+    border-radius: 12px;
+    padding: 16px 18px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 13px;
+    color: #d7dde4;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.55);
+    transform: translateY(20px);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.35s ease, opacity 0.35s ease;
+  }
+  #qa-bug-toast.qa-show {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+  #qa-bug-toast .qa-toast-title {
+    font-weight: 700;
+    color: #5eead4;
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+  #qa-bug-toast .qa-row { margin: 3px 0; }
+  #qa-bug-toast .qa-label { color: #8b949e; }
+  #qa-bug-toast .qa-crit  { color: #f87171; font-weight: 600; }
+  #qa-bug-toast .qa-wont  { color: #fbbf24; font-weight: 600; }
+  #qa-bug-toast .qa-note  {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed rgba(139, 148, 158, 0.3);
+    color: #9aa4af;
+    font-style: italic;
+  }
+
+  /* Accessibility: calm everything down if user prefers reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    #qa-bug { animation: none; transition: none; }
+    #qa-bug-toast { transition: opacity 0.2s ease; transform: none; }
+  }
+</style>
+
+<button id="qa-bug" aria-label="A suspicious bug is crawling on this page. Click to report it!" title="Hmm… is that a bug?">🐛</button>
+
+<div id="qa-bug-toast" role="status" aria-live="polite">
+  <div class="qa-toast-title">🐞 Bug Report Filed — #BUG-001</div>
+  <div class="qa-row"><span class="qa-label">Severity:</span> <span class="qa-crit">Critical</span></div>
+  <div class="qa-row"><span class="qa-label">Status:</span> <span class="qa-wont">Won't Fix 😄</span></div>
+  <div class="qa-row"><span class="qa-label">Reported by:</span> You, just now</div>
+  <div class="qa-note">Nice catch! You'd make a great exploratory tester. The bug will respawn… they always do.</div>
+</div>
+
+<script is:inline>
+  (function () {
+    var bug = document.getElementById('qa-bug');
+    var toast = document.getElementById('qa-bug-toast');
+    var bugCount = 0;
+    var moveTimer;
+
+    // Place the bug at a random spot, keeping it inside the viewport
+    function moveBug() {
+      var pad = 60;
+      var x = pad + Math.random() * (window.innerWidth - pad * 2);
+      var y = pad + Math.random() * (window.innerHeight - pad * 2);
+      bug.style.left = x + 'px';
+      bug.style.top = y + 'px';
+    }
+
+    function startCrawling() {
+      moveBug();
+      clearInterval(moveTimer);
+      moveTimer = setInterval(moveBug, 6000); // crawls to a new spot every 6s
+    }
+
+    bug.addEventListener('click', function () {
+      bugCount++;
+      clearInterval(moveTimer);
+      bug.classList.add('qa-squashed');
+
+      // Update report number for repeat hunters
+      toast.querySelector('.qa-toast-title').textContent =
+        '🐞 Bug Report Filed — #BUG-' + String(bugCount).padStart(3, '0');
+      toast.classList.add('qa-show');
+
+      // Hide the toast after 6 seconds
+      setTimeout(function () { toast.classList.remove('qa-show'); }, 6000);
+
+      // Respawn the bug after 30 seconds (they always come back…)
+      setTimeout(function () {
+        bug.classList.remove('qa-squashed');
+        startCrawling();
+      }, 30000);
+    });
+
+    // Bonus easter egg for fellow testers who open DevTools
+    console.log(
+      '%c🐛 QA instinct detected! You opened DevTools.\n' +
+      'There\'s a bug crawling somewhere on this page — find it and file a report.\n' +
+      '— Komal',
+      'color:#5eead4; font-size:13px; font-family:monospace;'
+    );
+
+    startCrawling();
+  })();
+</script>
+<!-- ============== end bug hunt ============== -->
   </body>
 </html>

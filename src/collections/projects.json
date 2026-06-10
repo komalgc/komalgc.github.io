@@ -14,7 +14,7 @@
     "url": "https://github.com/komalgc/TestDataGenerator/tree/main"
   },
        {
-    "name": "Playwright Authetication Recipes",
+    "name": "Playwright Authentication Recipes",
     "description": "A comprehensive, production-ready reference architecture demonstrating scalable authentication strategies in Playwright using TypeScript.",
     "image": "/assets/images/projects/Authentication.jpg",
     "url": "https://github.com/komalgc/Playwright-Authentication/tree/main"
