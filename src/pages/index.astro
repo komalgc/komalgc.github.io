@@ -20,10 +20,10 @@ import Layout from "../layouts/main.astro";
   <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Komal.</span>
 </h1>
 				<p
+					id="qa-tagline"
 					class="mb-6 text-base text-neutral-600 dark:text-neutral-400"
 				>
-					I'm QA/AI Test Automation Engineer from USA.
-					<br class="hidden lg:block" />
+					<span id="qa-tagline-text">I'm a QA/AI Test Automation Engineer from the USA.</span><span id="qa-tagline-cursor" aria-hidden="true">|</span>
 				</p>
 				<p
 					class="mb-2 font-semibold text-neutral-800 dark:text-neutral-200"
@@ -51,7 +51,8 @@ import Layout from "../layouts/main.astro";
 				<Button
 					text="Follow me on LinkedIn"
 					link="https://www.linkedin.com/in/komalchowdhary/"
-				/ variant="aqua">
+					variant="aqua"
+				/>
 			</div>
 			<div
 				class="relative justify-end hidden w-full mt-10 md:flex md:pl-10 md:w-1/2 md:mt-0 md:translate-y-4 xl:translate-y-0"
@@ -67,6 +68,7 @@ import Layout from "../layouts/main.astro";
 	class="wave flex items-center justify-center w-full h-full bg-white border border-dashed rounded-full dark:bg-neutral-950 border-neutral-300 dark:border-neutral-700"
 	>👋</span
 >
+						</span>
 					</div>
 					<div class="relative z-30 px-10">
 						<img
@@ -90,6 +92,74 @@ import Layout from "../layouts/main.astro";
 	<Projects />
 	<Separator text="Here's what I've written so far" />
 	<Writings />
+
+	<!-- ⌨️ Typewriter tagline logic -->
+	<script is:inline>
+		(function () {
+			var lines = [
+				"I'm a QA/AI Test Automation Engineer from the USA.",
+				"I break things professionally.",
+				"Trust, but verify. Then automate the verification.",
+				"Bug Advocate. Testability Advocate.",
+				"AI Agent Whisperer in QA workflows.",
+				" Exploratory tester.",
+			];
+
+			var el = document.getElementById("qa-tagline-text");
+			if (!el) return;
+
+			// Respect reduced-motion: rotate lines with a simple swap, no typing
+			var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+			if (reduceMotion) {
+				var idx = 0;
+				setInterval(function () {
+					idx = (idx + 1) % lines.length;
+					el.textContent = lines[idx];
+				}, 5000);
+				return;
+			}
+
+			var lineIndex = 0;
+			var charIndex = lines[0].length; // first line starts fully typed
+			var deleting = false;
+
+			var TYPE_SPEED = 45; // ms per character while typing
+			var DELETE_SPEED = 22; // ms per character while deleting
+			var HOLD_FULL = 2600; // pause when a line is fully typed
+			var HOLD_EMPTY = 350; // pause before typing the next line
+
+			function tick() {
+				var current = lines[lineIndex];
+
+				if (!deleting) {
+					charIndex++;
+					el.textContent = current.slice(0, charIndex);
+					if (charIndex >= current.length) {
+						deleting = true;
+						setTimeout(tick, HOLD_FULL);
+						return;
+					}
+					setTimeout(tick, TYPE_SPEED);
+				} else {
+					charIndex--;
+					el.textContent = current.slice(0, charIndex);
+					if (charIndex <= 0) {
+						deleting = false;
+						lineIndex = (lineIndex + 1) % lines.length;
+						setTimeout(tick, HOLD_EMPTY);
+						return;
+					}
+					setTimeout(tick, DELETE_SPEED);
+				}
+			}
+
+			// Hold the real, professional line for a beat, then start the show
+			setTimeout(function () {
+				deleting = true;
+				tick();
+			}, HOLD_FULL);
+		})();
+	</script>
 </Layout>
 <style>
 	@keyframes fade-up {
@@ -104,4 +174,23 @@ import Layout from "../layouts/main.astro";
 		75% { transform: rotate(-12deg); }
 	}
 	.wave { animation: wave 2s ease-in-out infinite; transform-origin: 70% 70%; }
+
+	/* ⌨️ Typewriter tagline */
+	#qa-tagline {
+		/* Reserve space so the page doesn't jump as lines change length */
+		min-height: 3.2em;
+	}
+	#qa-tagline-cursor {
+		color: #5eead4; /* teal cursor to match the accent */
+		font-weight: 300;
+		margin-left: 2px;
+		animation: qa-cursor-blink 0.9s steps(1) infinite;
+	}
+	@keyframes qa-cursor-blink {
+		0%, 49% { opacity: 1; }
+		50%, 100% { opacity: 0; }
+	}
+	@media (prefers-reduced-motion: reduce) {
+		#qa-tagline-cursor { animation: none; opacity: 0.6; }
+	}
 </style>
