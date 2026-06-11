@@ -7,6 +7,13 @@ import Layout from "../layouts/main.astro";
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+
+// 🔄 "Currently" card — update these three lines anytime, nothing else to touch
+const currently = {
+	experimenting: "AI agents/sub agents for QA workflows",
+	reading: "LLM Engineer’s Handbook by Paul Iusztin and Maxime Labonne", // ← put whatever you're actually reading
+	coffee: "critically high — re-test required",
+};
 ---
 
 <Layout title="Komal">
@@ -88,6 +95,116 @@ import Layout from "../layouts/main.astro";
 		</div>
 	</div>
 
+	<!-- ☕ "Currently" card with QA-woman illustration -->
+	<div class="relative z-20 w-full max-w-4xl mx-auto mt-14 px-7 xl:px-0">
+		<div
+			class="flex flex-col items-center gap-5 p-6 border border-dashed rounded-2xl sm:flex-row border-neutral-300 dark:border-neutral-700 bg-gradient-to-r from-white via-neutral-50 to-white dark:from-neutral-950 dark:via-black dark:to-neutral-950"
+		>
+			<svg viewBox="0 0 240 170" class="w-36 h-auto shrink-0" aria-hidden="true" role="img">
+				<defs>
+				<linearGradient id="qaHair" x1="0" y1="0" x2="0" y2="1">
+				<stop offset="0" stop-color="#9c6b3a"/>
+				<stop offset="0.55" stop-color="#7c4a21"/>
+				<stop offset="1" stop-color="#5d3617"/>
+				</linearGradient>
+				<linearGradient id="qaSkin" x1="0" y1="0" x2="0" y2="1">
+				<stop offset="0" stop-color="#f0c298"/>
+				<stop offset="1" stop-color="#e0a877"/>
+				</linearGradient>
+				<linearGradient id="qaTop" x1="0" y1="0" x2="0" y2="1">
+				<stop offset="0" stop-color="#14b8a6"/>
+				<stop offset="1" stop-color="#0c7d72"/>
+				</linearGradient>
+				</defs>
+				<!-- plant -->
+				<path d="M24 115 q-8 -6 -7 -16 q9 3 7 16 z" fill="#16a34a"/>
+				<path d="M25 115 q8 -7 7 -17 q-9 3 -7 17 z" fill="#22c55e"/>
+				<path d="M24 116 q-2 -10 0.5 -18 q3 8 -0.5 18 z" fill="#15803d"/>
+				<rect x="15.5" y="114" width="18" height="4.5" rx="2" fill="#c2703d"/>
+				<path d="M17 118.5 h15 l-2 12.5 h-11 z" fill="#a85a2e"/>
+				<!-- desk -->
+				<rect x="14" y="131" width="212" height="7" rx="3.5" class="fill-neutral-300 dark:fill-neutral-700"/>
+				<!-- book stack -->
+				<rect x="36" y="122" width="36" height="8" rx="2" fill="#0e7490"/>
+				<rect x="40" y="113" width="31" height="8" rx="2" fill="#155e75"/>
+				<path d="M42 111 q7 -5 14 0 q7 -5 14 0 l0 2 q-7 -4 -14 0 q-7 -4 -14 0 z" fill="#e2e8f0"/>
+				<!-- laptop -->
+				<rect x="64" y="82" width="60" height="44" rx="4" fill="#1f2937" stroke="#0e7490" stroke-width="2"/>
+				<!-- dim code lines on screen -->
+				<rect x="72" y="92" width="26" height="3.5" rx="1.75" fill="#475569"/>
+				<rect x="72" y="100" width="38" height="3.5" rx="1.75" fill="#3f5b66"/>
+				<rect x="78" y="108" width="30" height="3.5" rx="1.75" fill="#475569"/>
+				<rect x="72" y="116" width="20" height="3.5" rx="1.75" fill="#3f5b66"/>
+				<rect x="56" y="126" width="76" height="6" rx="3" fill="#374151"/>
+				<!-- hair behind (long, over shoulder) -->
+				<path d="M159 50 q-11 16 -7 46 q2 14 6 22 q6 5 12 1 q-8 -18 -7 -38 q1 -17 6 -27 z" fill="url(#qaHair)"/>
+				<!-- neck -->
+				<rect x="168" y="74" width="13" height="14" rx="5" fill="url(#qaSkin)"/>
+				<!-- torso -->
+				<path d="M148 131 q-3 -40 26 -43 q29 3 26 43 z" fill="url(#qaTop)"/>
+				<!-- collar -->
+				<path d="M166 90 q8 7 16 0 l-3 7 q-5 4 -10 0 z" fill="#0a655c"/>
+				<!-- arm typing -->
+				<path d="M154 100 Q136 110 127 123" stroke="#0c7d72" stroke-width="11" fill="none" stroke-linecap="round"/>
+				<circle cx="126" cy="123" r="5.5" fill="url(#qaSkin)"/>
+				<!-- arm holding mug -->
+				<path d="M194 102 Q208 101 210 93" stroke="#0c7d72" stroke-width="11" fill="none" stroke-linecap="round"/>
+				<rect x="201" y="73" width="18" height="17" rx="3" fill="#f59e0b"/>
+				<rect x="201" y="73" width="18" height="4" rx="2" fill="#fbbf24"/>
+				<path d="M219 77 q8 1 0 9" stroke="#f59e0b" stroke-width="3.5" fill="none"/>
+				<circle cx="210" cy="91" r="5.5" fill="url(#qaSkin)"/>
+				<!-- steam -->
+				<path d="M206 67 q3 -5 0 -10" stroke="#9ca3af" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.8"/>
+				<path d="M214 67 q3 -4 0 -8" stroke="#9ca3af" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.5"/>
+				<!-- right-side open hair, flows over shoulder -->
+				<path d="M188 46 q12 15 9 44 q-1 10 -8 14 q-5 -3 -4 -9 q6 -20 -2 -38 z" fill="url(#qaHair)"/>
+				<path d="M192 58 q5 14 3 32" stroke="#b98850" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.55"/>
+				<!-- head -->
+				<circle cx="174" cy="58" r="18" fill="url(#qaSkin)"/>
+				<!-- ear -->
+				<circle cx="157.5" cy="61" r="3.2" fill="#e0a877"/>
+				<!-- hair top: side part sweep -->
+				<path d="M156.5 61 A18 18 0 0 1 191.5 53 L192 60 L190.5 58 Q183.5 49.5 174 49.5 Q164.5 49.5 158.5 58 Q156.8 59.5 156.5 61 Z" fill="url(#qaHair)"/>
+				<!-- hair highlight strands -->
+				<path d="M161 47 q10 -6 22 -2" stroke="#b98850" stroke-width="1.4" fill="none" stroke-linecap="round" opacity="0.8"/>
+				<path d="M158 52 q6 -6 13 -7" stroke="#b98850" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.6"/>
+				<!-- bun -->
+				<!-- eyebrows -->
+				<path d="M162.5 55 q3.2 -2 6.5 -0.7" stroke="#5d3617" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+				<path d="M173.5 54.3 q3.2 -2 6.5 -0.7" stroke="#5d3617" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+				<!-- eyes: whites + brown iris, gazing toward screen -->
+				<ellipse cx="166" cy="59" rx="2.8" ry="3.2" fill="#fff"/>
+				<ellipse cx="177" cy="59" rx="2.8" ry="3.2" fill="#fff"/>
+				<circle cx="165" cy="59.5" r="1.7" fill="#4a2c12"/>
+				<circle cx="176" cy="59.5" r="1.7" fill="#4a2c12"/>
+				<circle cx="164.5" cy="58.8" r="0.55" fill="#fff"/>
+				<circle cx="175.5" cy="58.8" r="0.55" fill="#fff"/>
+				<!-- upper lash lines -->
+				<!-- bindi -->
+				<!-- nose -->
+				<path d="M171.5 60 q-1.3 3.6 1 5" stroke="#c98e60" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+				<!-- lips -->
+				<path d="M166.5 68 q4.8 4.5 9.5 0 q-4.7 2.6 -9.5 0 z" fill="#b9485e"/>
+				<!-- blush -->
+				<ellipse cx="163" cy="65" rx="2.6" ry="1.5" fill="#e88a74" opacity="0.45"/>
+				<ellipse cx="180" cy="65" rx="2.6" ry="1.5" fill="#e88a74" opacity="0.45"/>
+				<!-- dangly earring -->
+				<line x1="157.5" y1="64" x2="157.5" y2="71" stroke="#0e7490" stroke-width="1.4"/>
+				<circle cx="157.5" cy="73" r="2.3" fill="#22d3ee"/>
+			</svg>
+			<div>
+				<p class="mb-2 font-semibold text-neutral-800 dark:text-neutral-200">
+					Currently:
+				</p>
+				<ul class="space-y-1.5 text-sm text-neutral-600 dark:text-neutral-400">
+					<li>🧪 Experimenting with {currently.experimenting}</li>
+					<li>📖 Reading <span class="italic">{currently.reading}</span></li>
+					<li>☕ Coffee level: {currently.coffee}</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
 	<Separator text="Here's what I've coded so far" />
 	<Projects />
 	<Separator text="Here's what I've written so far" />
@@ -100,9 +217,9 @@ import Layout from "../layouts/main.astro";
 				"I'm a QA/AI Test Automation Engineer from the USA.",
 				"I break things professionally.",
 				"Trust, but verify. Then automate the verification.",
-				"Bug Advocate. Testability Advocate.",
-				"AI Agent Whisperer in QA workflows.",
-				"Exploratory tester.",
+				"Your code's worst nightmare. Your product's best friend.",
+				"All tests green. Suspicious… re-running just in case.",
+				"I don't write bugs. I write bug reports.",
 			];
 
 			var el = document.getElementById("qa-tagline-text");
