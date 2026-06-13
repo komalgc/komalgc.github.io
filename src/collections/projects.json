@@ -13,6 +13,13 @@
     "image": "/assets/images/projects/Test-Data-Generator.png",
     "url": "https://github.com/komalgc/TestDataGenerator/tree/main"
   },
+
+        {
+    "name": "AI-Preflight Check ",
+    "description": "AIPreflight is a free, 30-minute team workshop framework that assesses an engineering team's operational readiness before scaling AI-assisted development.",
+    "image": "/assets/images/projects/preflight.png",
+    "url": "https://github.com/komalgc/ai-preflight/tree/main"
+  },
        {
     "name": "Playwright Authentication Recipes",
     "description": "A comprehensive, production-ready reference architecture demonstrating scalable authentication strategies in Playwright using TypeScript.",
